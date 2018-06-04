@@ -72,6 +72,9 @@
                 @endif
                     <a class="nav-link" href="{{ route('help') }}">Bantuan</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}">Keluar</a>
+                </li>
             </ul>
             <!-- <div class="form-inline">
                 <a href="" class="btn btn-danger mr-sm-1">Logout</a>
