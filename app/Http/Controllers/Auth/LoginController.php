@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Route;
 
 class LoginController extends Controller
 {
@@ -39,9 +40,13 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
+        $route = Route::currentRouteName();
+
         $data = array(
-            'title' => 'Login - Dorah'
+            'title' => 'Login - Dorah',
+            'route' => $route
         );
+
         return view('auth.login')->with($data);
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Route;
 
 class RegisterController extends Controller
 {
@@ -73,9 +74,13 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
+        $route = Route::currentRouteName();
+
         $data = array(
-            'title' => 'Login - Dorah'
+            'title' => 'Login - Dorah',
+            'route' => $route
         );
+
         return view('auth.register')->with($data);
     }
 }

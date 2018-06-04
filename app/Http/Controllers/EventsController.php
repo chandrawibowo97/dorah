@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class EventsController extends Controller
 {
     public function event(){
+        $route = Route::currentRouteName();
+
         $data = array(
-            'title' => 'Event - Dorah'
+            'title' => 'Event - Dorah',
+            'route' => $route
         );
         return view('pages.event')->with($data);
     }
