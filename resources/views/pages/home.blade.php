@@ -8,12 +8,12 @@
             <div class="row col col-md-8">
                 <h3 class="text-muted col-md-12">Event Terbaru</h3>
                 <div class="col col-md-6">
-                    
+
                 </div>
             </div>
 
             <div class="col col-md-4">
-                <h3 class="text-muted">Selamat Datang, Nama</h3>
+                <h3 class="text-muted">Selamat Datang, {{ $name }}</h3>
                 <div class="card">
                     <div class="card-header">Notifikasi</div>
                     <ul class="list-group list-group-flush">
@@ -105,7 +105,7 @@
                     <option value='Sumatera Barat'> Sumatera Barat</option>
                     <option value='Sumatera Selatan'> Sumatera Selatan</option>
                     <option value='Sumatera Utara'> Sumatera Utara</option>
-                </select>  
+                </select>
             </div>
         </div>
         <div class="row">
