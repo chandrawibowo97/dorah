@@ -11,18 +11,19 @@
 |
 */
 
-Route::get('/', 'PagesController@index');
+Route::prefix('event')->group(function () {
+    Route::get('/', 'EventsController@event')->name('event');
+    Route::get('/detail', 'EventsController@eventDetail'); //Temporary, seharusnya /event/{id}
+    Route::get('/add', 'EventsController@addEvent'); //temporary
+});
 
-Route::get('/event', 'EventsController@event');
-Route::get('/eventdetail', 'EventsController@eventDetail'); //Temporary, seharusnya /event/{id}
-Route::get('/addevent', 'EventsController@addEvent'); //temporary
+Route::get('/map', 'PagesController@map')->name('map');
+Route::get('/help', 'PagesController@help')->name('help');
 
-Route::get('/map', 'PagesController@map');
-Route::get('/help', 'PagesController@help');
-
-Route::get('/home', 'PagesController@home');
+Route::get('/home', 'PagesController@home')->name('home');
 Route::get('/profile', 'PagesController@profile');
+Route::get('/logout', 'Auth\LogoutController@logout')->name('logout');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'PagesController@index');
