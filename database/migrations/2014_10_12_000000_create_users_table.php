@@ -18,8 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('phone')->nullable()->default(null);
             $table->integer('blood_type_id')->unsigned();
+            $table->string('remember_token')->nullable()->default(null);
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password', 255);
             $table->timestamps();
         });
     }
