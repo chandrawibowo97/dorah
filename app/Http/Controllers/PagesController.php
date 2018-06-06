@@ -10,8 +10,11 @@ class PagesController extends Controller
 {
     public function index()
     {
+        $route = Route::currentRouteName();
+
         $data = array(
-            'title' => 'Dorah - Aplikasi Donor Darah'
+            'title' => 'Dorah - Aplikasi Donor Darah',
+            'route' => $route
         );
         return view('pages.index')->with($data);
     }
