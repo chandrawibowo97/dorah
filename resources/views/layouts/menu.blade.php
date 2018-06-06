@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
-            <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <img src="{{asset('image/logo.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
             Dorah
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarControls" aria-controls="navbarControls" aria-expanded="false" aria-label="Buka Navigasi">

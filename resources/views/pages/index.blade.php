@@ -5,10 +5,10 @@
 
 
 <!-- Jumbotron Heading -->
-<section class="jumbotron jumbotron-fluid text-center custom-heading">
-    <div class="container">
+<section class="jumbotron jumbotron-fluid text-center mb-0" style="background-color: #fff; background-image: url({{asset('image/indonesia-map.png')}}); background-repeat: no-repeat; background-size: 100% auto;">
+    <div class="container p-5">
         <h1 class="display-4">Cek Stok Darah Indonesia Hanya dengan Peta</h1>
-        <p class="lead text-muted">Sekarang kamu bisa mendapatkan informasi stok darah yang akurat dengan cepat hanya melalui peta</p>
+        <p class="lead">Sekarang kamu bisa mendapatkan informasi stok darah yang akurat dengan cepat hanya melalui peta</p>
         <p>
             <a class="btn btn-danger" href="/map">Cek Stok Darah Sekarang</a>
         </p>
@@ -16,16 +16,16 @@
 </section>
 
 <!-- Signup Form -->
-<div class="jumbotron jumbotron-fluid custom-default" id="registerform">
+<div class="jumbotron jumbotron-fluid" id="registerform">
     <div class="container">
         <div class="row justify-content-md-center">
-            <div class="col text-center">
+            <div class="col-md-6 text-center mb-3">
                 <h2 class="text-muted">Darah Anda, Nyawa Seseorang</h2>
                 <p class="lead text-muted">1 kantong darah anda dapat menyelamatkan 3 orang</p>
-                <image class="rounded img-fluid" src="images/donor-darah.jpg"></image>
+                <image class="rounded img-fluid" src="{{asset('image/main-image.jpg')}}"></image>
             </div>
 
-            <div class="col">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                         <form action="register.php" method="post">
