@@ -110,19 +110,222 @@
         </div>
         <div class="row">
             <div class="col col-md-12">
-                <div id="maps" style="height: 500px; background-image:url('images/background-map.jpg'); background-size: cover"></div>
-            </div>
-            <div class="col col-md-12">
-                <img class="img-fluid mt-5" src="images/bar-chart.png"/>
+                <div id="maps" style="height: 500px"></div>
             </div>
             <div class="col col-md-6">
-                <img class="img-fluid mt-5" style="width: 100%" src="images/pie-chart.png"/>
-            </div>
-            <div class="col col-md-6">
-                <img class="img-fluid mt-5" style="width: 100%" src="images/line-chart.png"/>
+                <canvas id="pie_chart"></canvas>
+
+        <script type="text/javascript">
+            var myPieChart;
+            var chartWidth = 30; chartHeight= 30;
+            function initChart(data){
+
+                var pie_chart = document.getElementById('pie_chart');
+                pie_chart.width = chartWidth;
+                pie_chart.height = chartHeight;
+                var ctx_pie = pie_chart.getContext("2d");
+                // destroy last created chart
+                if(myPieChart != undefined){
+                    myPieChart.destroy();               
+                }             
+                myPieChart = new Chart(ctx_pie,{
+                    type: 'pie',
+                    data: data,
+                });
+            }
+
+        </script>
+
+        <script type="text/javascript">
+            var marker_icon = {
+                HIGH: 'http://www.millawi.com.au/wp-content/uploads/2016/02/img_Circle_Green.jpg',
+                LOW: 'http://www.millawi.com.au/wp-content/uploads/2016/02/img_Circle_Red.jpg',
+                DEFAULT: 'http://www.millawi.com.au/wp-content/uploads/2016/02/img_Circle_Blue.jpg'
+            }
+
+            function getStock(branch_id){
+                for(let j = 0; j < stock.length; j++) {
+                    if(stock[j].branch_id == branch_id){
+                        return stock[j];
+                    }
+                }
+                return undefined;
+            }
+
+            function initMap() {
+                var map = new google.maps.Map(document.getElementById('maps'), {
+                  zoom: 14,
+                  center: {lat: branchs[0].lat, lng : branchs[0].lng }
+                });
+
+                var infowindow = new google.maps.InfoWindow();
+                var marker, i;
+
+                for (i = 0; i < branchs.length; i++) { 
+                    let stock = getStock(branchs[i].id) != undefined ? getStock(branchs[i].id) : undefined;
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(branchs[i].lat, branchs[i].lng),
+                        icon: {
+                            url: stock != undefined ? marker_icon[stock.alert] : marker_icon['DEFAULT'],
+                            scaledSize: new google.maps.Size(20, 20)
+                        },
+                        map: map
+                    });
+
+                  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    let address = branchs[i].address+', '+branchs[i].district+', '+branchs[i].city+', '+branchs[i].province+' kode pos '+branchs[i].postcode;
+
+                    return function() {
+                        let stock_darah = stock.stock_darah;                    
+                        let labels = [], stocks = [];
+
+                        stock_darah.forEach((item)=>{
+                            labels.push(item.label);
+                            stocks.push(item.stock);
+                        })
+
+                        initChart({
+                            datasets: [{
+                                data: stocks,
+                                backgroundColor: ['#f00','#0f0','#00f','#ff0','#0ff','#f0f','#000','#fff']
+                            }],
+
+                            // These labels appear in the legend and in the tooltips when hovering different arcs
+                            labels: labels
+                        });
+
+                      infowindow.setContent(address);
+                      infowindow.open(map, marker);
+                    }
+                  })(marker, i));
+                }            
+            }
+        </script>
+        <script type="text/javascript">
+            var branchs = [
+                {
+                    id: 1,
+                    name: 'UTD PMI Kota Medan',
+                    address: 'Jl. Perintis Kemerdekaan No.37',
+                    district: 'Medan Timur',
+                    city: 'Medan',
+                    province: 'Sumatera Utara',
+                    postcode: 20233,
+                    lat: 3.5992310,
+                    lng: 98.6835840
+                },
+                {
+                    id: 2,
+                    name: 'Palang Merah Indonesia',
+                    address: 'Jl. Palang Merah No.17, A U R',
+                    district: 'Medan Maimun',
+                    city: 'Medan',
+                    province: 'Sumatera Utara',
+                    postcode: 20151,
+                    lat: 3.5843472,
+                    lng: 98.6801561
+                }
+            ];
+            var stock = [
+                {
+                    branch_id: 1,
+                    alert : 'HIGH',
+                    stock_darah: [
+                        {
+                            id: 1,
+                            label: 'A+',
+                            stock: 50
+                        },
+                        {
+                            id: 2,
+                            label: 'A-',
+                            stock: 50
+                        },
+                        {
+                            id: 3,
+                            label: 'B+',
+                            stock: 50
+                        },
+                        {
+                            id: 4,
+                            label: 'B-',
+                            stock: 50
+                        },
+                        {
+                            id: 5,
+                            label: 'AB+',
+                            stock: 50
+                        },
+                        {
+                            id: 6,
+                            label: 'AB-',
+                            stock: 50
+                        },
+                        {
+                            id: 7,
+                            label: 'O+',
+                            stock: 50
+                        },
+                        {
+                            id: 8,
+                            label: 'O-',
+                            stock: 50
+                        }
+                    ]
+                },
+                {
+                    branch_id: 2,
+                    alert: 'LOW',
+                    stock_darah: [
+                        {
+                            id: 9,
+                            label: 'A+',
+                            stock: 20
+                        },
+                        {
+                            id: 10,
+                            label: 'A-',
+                            stock: 15
+                        },
+                        {
+                            id: 11,
+                            label: 'B+',
+                            stock: 38
+                        },
+                        {
+                            id: 12,
+                            label: 'B-',
+                            stock: 33
+                        },
+                        {
+                            id: 13,
+                            label: 'AB+',
+                            stock: 18
+                        },
+                        {
+                            id: 14,
+                            label: 'AB-',
+                            stock: 23
+                        },
+                        {
+                            id: 15,
+                            label: 'O+',
+                            stock: 9
+                        },
+                        {
+                            id: 16,
+                            label: 'O-',
+                            stock: 11
+                        }
+                    ]
+                }
+            ];
+        </script>
             </div>
         </div>
     </div>
+
+
 </div>
 
 <!-- footer -->
@@ -133,32 +336,11 @@
     </div>
 </footer>
 
-<!-- Event Location Modal  -->
-<div class="modal fade lokasievent" tabindex="-1" role="dialog" aria-labelledby="modalLokasiEvent" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Lokasi Event</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div id="maps" style="height: 400px; background-image:url('images/background-map.jpg'); background-size: cover">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Get Directions</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 @endsection
 
 
 @section('script')
-
+<script src="{{asset('js/chart.bundle.min.js')}}"></script>
 <script src="js/googlemaps.js"></script>
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDxQBvSn1BtzShvuE3hpJZgBPQ-1MVKmw&callback=initMap"></script>
