@@ -27,3 +27,5 @@ Route::get('/logout', 'Auth\LogoutController@logout')->name('logout');
 Auth::routes();
 
 Route::get('/', 'PagesController@index');
+
+Route::resource('blog', 'PostsController');

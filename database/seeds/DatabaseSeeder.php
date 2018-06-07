@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
     	$this->call(PmiBranchSeeder::class);
     	$this->call(BloodStockSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(PostSeeder::class);
     }
 }

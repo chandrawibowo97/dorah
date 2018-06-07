@@ -17,6 +17,7 @@
                 @endif
                     <a class="nav-link" href="{{ route('home') }}">Beranda</a>
                 </li>
+
                 @if ($route == 'event')
                 <li class="nav-item active">
                 @else
@@ -24,6 +25,15 @@
                 @endif
                     <a class="nav-link" href="{{ route('event') }}">Event</a>
                 </li>
+
+                @if ($route == 'blog.index')
+                <li class="nav-item active">
+                @else
+                <li class="nav-item">
+                @endif
+                    <a class="nav-link" href="{{ route('blog.index') }}">Berita</a>
+                </li>
+
                 @if ($route == 'help')
                 <li class="nav-item active">
                 @else
@@ -58,6 +68,7 @@
                 @endif
                     <a class="nav-link" href="{{ route('home') }}">Beranda</a>
                 </li>
+                
                 @if ($route == 'event')
                 <li class="nav-item active">
                 @else
@@ -65,6 +76,15 @@
                 @endif
                     <a class="nav-link" href="{{ route('event') }}">Event</a>
                 </li>
+
+                @if ($route == 'blog.index')
+                <li class="nav-item active">
+                @else
+                <li class="nav-item">
+                @endif
+                    <a class="nav-link" href="{{ route('blog.index') }}">Berita</a>
+                </li>
+
                 @if ($route == 'help')
                 <li class="nav-item active">
                 @else
@@ -72,6 +92,7 @@
                 @endif
                     <a class="nav-link" href="{{ route('help') }}">Bantuan</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}">Keluar</a>
                 </li>
