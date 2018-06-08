@@ -15,8 +15,10 @@
             <div class="card">
                 <img class="card-img-top" src="/storage/event-images/{{$event->event_picture}}" alt="Gambar Event">
                 <div class="card-body">
-                    <h5 class="card-title">{{$event->title}}</h5>
-                    <p class="card-text">{{$event->address}}</p>
+                    <h4 class="card-title">{{$event->title}}</h4>
+                    <h5 class="text-muted">{{$event->from->format('D, d M Y')}}</h5>
+                    <p>Waktu: {{$event->from->format('G:ia')}} - {{$event->to->format('G:ia')}}</p>
+                    <p>Lokasi: {{$event->address}}</p>
                 </div>
                 <div class="card-footer">
                     <a class="card-link" href="event/{{$event->id}}">Cek Lokasi</a>

@@ -13,7 +13,8 @@
             <div class="col-md-4">
                 <img class="img-thumbnail img-fluid mb-3" src="/storage/event-images/{{$event->event_picture}}">
                 <h4>{{$event->title}}</h4>
-                <h5 class="text-muted">{{$event->from}}</h5>
+                <h5 class="text-muted">{{$event->from->format('D, d M Y')}}</h5>
+                <p>Waktu: {{$event->from->format('G:ia')}} - {{$event->to->format('G:ia')}}</p>
                 <p>Lokasi: {{$event->address}}</p>
                 {{-- 
                 echo '<a target="_blank" class="fb-share btn btn-primary btn-block" href="https://www.facebook.com/sharer/sharer.php?p[url]=http://www.dorah.co.id&p[title]=Event+Donor+Darah+&p[summary]=Recent+events">' , 'Sebarkan ke Facebook</a>';
