@@ -1,7 +1,7 @@
 @if (!Auth::check())
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('home') }}">
+        <a class="navbar-brand" href="{{ route('index') }}">
             <img src="{{asset('image/logo.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
             Dorah
         </a>
@@ -10,12 +10,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarControls">
             <ul class="navbar-nav mr-auto">
-                @if ($route == 'home')
+                @if ($route == 'index')
                 <li class="nav-item active">
                 @else
                 <li class="nav-item">
                 @endif
-                    <a class="nav-link" href="{{ route('home') }}">Beranda</a>
+                    <a class="nav-link" href="{{ route('index') }}">Beranda</a>
                 </li>
 
                 @if ($route == 'event.index')
@@ -52,7 +52,7 @@
 @else
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="{{ route('home') }}">
             <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
             Dorah
         </a>

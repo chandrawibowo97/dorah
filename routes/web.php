@@ -12,17 +12,15 @@
 */
 
 
-
+Route::get('/', 'PagesController@index')->name('index');
+Route::resource('event', 'EventsController');
+Route::resource('blog', 'PostsController');
 Route::get('/map', 'PagesController@map')->name('map');
 Route::get('/help', 'PagesController@help')->name('help');
 
-Route::get('/home', 'PagesController@home')->name('home');
-Route::get('/profile', 'PagesController@profile');
+// User only
+Route::get('/home', 'User\HomeController@index')->name('home');
+Route::get('/profile', 'User\ProfileController@index')->name('profile');
 Route::get('/logout', 'Auth\LogoutController@logout')->name('logout');
 
 Auth::routes();
-
-Route::get('/', 'PagesController@index');
-
-Route::resource('event', 'EventsController');
-Route::resource('blog', 'PostsController');
