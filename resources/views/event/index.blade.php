@@ -11,7 +11,20 @@
          </div>
         <div class="card-columns">
 
-            {{-- Cards here --}}
+            @foreach($events as $event)
+            {{$event->id}}
+            <div class="card">
+                <img class="card-img-top" src="{{$event->event_picture}}" alt="Gambar Event">
+                <div class="card-body">
+                    <h5 class="card-title">{{$event->title}}</h5>
+                    <p class="card-text">{{$event->address}}</p>
+                    <a href="event/{{$event->id}}">Cek Lokasi</a>
+                </div>
+                <div class="card-footer">
+                    tes
+                </div>
+            </div>
+            @endforeach
             
         </div>
     </div>

@@ -18,12 +18,12 @@
                     <a class="nav-link" href="{{ route('home') }}">Beranda</a>
                 </li>
 
-                @if ($route == 'event')
+                @if ($route == 'event.index')
                 <li class="nav-item active">
                 @else
                 <li class="nav-item">
                 @endif
-                    <a class="nav-link" href="{{ route('event') }}">Event</a>
+                    <a class="nav-link" href="{{ route('event.index') }}">Event</a>
                 </li>
 
                 @if ($route == 'blog.index')
@@ -60,7 +60,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarControls">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav">
                 @if ($route == 'home')
                 <li class="nav-item active">
                 @else
@@ -69,12 +69,12 @@
                     <a class="nav-link" href="{{ route('home') }}">Beranda</a>
                 </li>
                 
-                @if ($route == 'event')
+                @if ($route == 'event.index')
                 <li class="nav-item active">
                 @else
                 <li class="nav-item">
                 @endif
-                    <a class="nav-link" href="{{ route('event') }}">Event</a>
+                    <a class="nav-link" href="{{ route('event.index') }}">Event</a>
                 </li>
 
                 @if ($route == 'blog.index')
@@ -93,13 +93,16 @@
                     <a class="nav-link" href="{{ route('help') }}">Bantuan</a>
                 </li>
 
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">Profil</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}">Keluar</a>
                 </li>
             </ul>
-            <!-- <div class="form-inline">
-                <a href="" class="btn btn-danger mr-sm-1">Logout</a>
-            </div> -->
         </div>
     </div>
 </nav>

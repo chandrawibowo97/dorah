@@ -11,11 +11,7 @@
 |
 */
 
-Route::prefix('event')->group(function () {
-    Route::get('/', 'EventsController@event')->name('event');
-    Route::get('/detail', 'EventsController@eventDetail'); //Temporary, seharusnya /event/{id}
-    Route::get('/add', 'EventsController@addEvent'); //temporary
-});
+
 
 Route::get('/map', 'PagesController@map')->name('map');
 Route::get('/help', 'PagesController@help')->name('help');
@@ -28,4 +24,5 @@ Auth::routes();
 
 Route::get('/', 'PagesController@index');
 
+Route::resource('event', 'EventsController');
 Route::resource('blog', 'PostsController');
