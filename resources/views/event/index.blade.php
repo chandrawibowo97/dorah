@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <h4 class="card-title">{{$event->title}}</h4>
                     <h5 class="text-muted">{{$event->from->format('D, d M Y')}}</h5>
-                    <p>Waktu: {{$event->from->format('G:ia')}} - {{$event->to->format('G:ia')}}</p>
+                    <p>Waktu: {{$event->from->format('g:ia')}} - {{$event->to->format('g:ia')}}</p>
                     <p>Lokasi: {{$event->address}}</p>
                 </div>
                 <div class="card-footer">
