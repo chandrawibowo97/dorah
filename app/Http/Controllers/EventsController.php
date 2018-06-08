@@ -54,7 +54,14 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        //
+        $route = Route::currentRouteName();
+        $event = Event::find($id);
+        $data = array(
+            'title' => 'Event '. $event->title .' - Dorah',
+            'route' => $route,
+            'event' => $event
+        );
+        return view('event.show')->with($data);
     }
 
     /**
