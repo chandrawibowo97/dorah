@@ -121,14 +121,6 @@
 
 </div>
 
-<!-- footer -->
-<footer>
-    <div class="container">
-        <p><span class="float-left text-muted">Dorah diberdayakan oleh Tim Motivator</span></p>
-        <p class="float-right"><a href="#">Kembali ke atas</a></p>
-    </div>
-</footer>
-
 @endsection
 
 

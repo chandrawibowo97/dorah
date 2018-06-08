@@ -7,7 +7,7 @@
 	<div class="card my-2">
 		<div class="card-body">
 			<h5><a href="blog/{{$post->id}}">{{$post->title}}</a></h5>
-			<p>{{$post->body}}</p>
+			<p>{!!$post->body!!}</p>
 		</div>
 	</div>
 

@@ -21,9 +21,11 @@ class ProfileController extends Controller
 
     public function index(){
     	$route = Route::currentRouteName();
+    	$user = Auth::user();
         $data = array(
             'title' => 'Edit Profile - Dorah',
-            'route' => $route
+            'route' => $route,
+            'user' => $user
         );
         return view('pages.profile')->with($data);
     }

@@ -35,15 +35,6 @@
             <div class="form-group">
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password" required>
             </div>
-            <div class="form-group">
-                <select id="signupInputGolongan" name="signupInputGolongan" class="form-control">
-                    <option value="0">Golongan Darah (Opsional)</option>
-                    <option value="1">Golongan A</option>
-                    <option value="2">Golongan B</option>
-                    <option value="3">Golongan AB</option>
-                    <option value="4">Golongan O</option>
-                </select>
-            </div>
             <button type="submit" class="btn btn-warning btn-block">Daftar</button>
         </form>
     </div>

@@ -12,15 +12,15 @@
                         <form method="post" action="changeprofile.php">
                             <div class="form-group">
                                 <label for="inputName">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="inputName" name="inputName" minlength="10" placeholder="Nama Lengkap" value="Nama">
+                                <input type="text" class="form-control" id="inputName" name="inputName" placeholder="Nama Lengkap" value="{{$user->name}}">
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail">Email</label>
-                                <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email" value="Email">
+                                <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email" value="{{$user->email}}">
                             </div>
                             <div class="form-group">
                                 <label for="inputPhone">No Telp</label>
-                                <input type="text" class="form-control" id="inputPhone" name="inputPhone" placeholder="No Telp" value="Telepon">
+                                <input type="text" class="form-control" id="inputPhone" name="inputPhone" placeholder="No Telp" value="{{$user->phone}}">
                             </div>
                             
                             <div class="form-group">
