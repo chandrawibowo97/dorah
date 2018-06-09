@@ -2,32 +2,30 @@
 
 @section('content')
 
-<div class="jumbotron jumbotron-fluid custom-default">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="display-4">Event</h2>
-            <hr class="display-4">
-            <p class="lead">Event merupakan fitur Dorah untuk menyebarkan event mengenai donor darah</p>
-         </div>
-        <div class="card-columns">
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="display-4">Event</h2>
+        <hr>
+        <p class="lead">Event merupakan fitur Dorah untuk menyebarkan event mengenai donor darah</p>
+    </div>
+    <div class="card-columns">
 
-            @foreach($events as $event)
-            <div class="card">
-                <img class="card-img-top" src="/storage/event-images/{{$event->event_picture}}" alt="Gambar Event">
-                <div class="card-body">
-                    <h4 class="card-title">{{$event->title}}</h4>
-                    <h5 class="text-muted">{{$event->from->format('D, d M Y')}}</h5>
-                    <p>Waktu: {{$event->from->format('g:ia')}} - {{$event->to->format('g:ia')}}</p>
-                    <p>Lokasi: {{$event->address}}</p>
-                </div>
-                <div class="card-footer">
-                    <a class="card-link" href="event/{{$event->id}}">Cek Lokasi</a>
-                    <a class="card-link" href="#">Sebarkan ke Facebook</a>
-                </div>
+        @foreach($events as $event)
+        <div class="card">
+            <img class="card-img-top" src="/storage/event-images/{{$event->event_picture}}" alt="Gambar Event">
+            <div class="card-body">
+                <h4 class="card-title">{{$event->title}}</h4>
+                <h5 class="text-muted">{{$event->from->format('D, d M Y')}}</h5>
+                <p>Waktu: {{$event->from->format('g:ia')}} - {{$event->to->format('g:ia')}}</p>
+                <p>Lokasi: {{$event->address}}</p>
             </div>
-            @endforeach
-            
+            <div class="card-footer">
+                <a class="card-link" href="event/{{$event->id}}">Cek Lokasi</a>
+                <a class="card-link" href="#">Sebarkan ke Facebook</a>
+            </div>
         </div>
+        @endforeach
+        
     </div>
 </div>
 

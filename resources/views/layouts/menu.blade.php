@@ -1,5 +1,5 @@
 @if (!Auth::check())
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark d-block">
     <div class="container">
         <a class="navbar-brand" href="{{ route('index') }}">
             <img src="{{asset('image/logo.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -50,7 +50,7 @@
     </div>
 </nav>
 @else
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark d-block">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
             <img src="{{asset('image/logo.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -95,8 +95,12 @@
 
             </ul>
             <ul class="navbar-nav ml-auto">
+                @if ($route == 'profile')
+                <li class="nav-item active">
+                @else
                 <li class="nav-item">
-                    <a class="nav-link" href="/profile">Profil</a>
+                @endif
+                    <a class="nav-link" href="{{ route('profile') }}">Profil</a>
                 </li>
 
                 <li class="nav-item">
