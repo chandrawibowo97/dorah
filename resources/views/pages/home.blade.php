@@ -30,11 +30,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col col-md-12">
-            <div id="maps" style="height: 500px"></div>
+        <div class="col-md-8">
+            <div id="maps" style="height: 420px"></div>
         </div>
-        <div class="col col-md-6">
-            <canvas id="pie_chart"></canvas>
+        <div class="col-md-4">
+            <canvas id="bar_chart"></canvas>
         </div>
     </div>
 </div>
@@ -44,21 +44,33 @@
 
 @section('script')
 <script type="text/javascript">
-    var myPieChart;
-    var chartWidth = 30; chartHeight= 30;
+    var myBarChart;
+    // var chartWidth = 30; chartHeight= 30;
     function initChart(data){
 
-        var pie_chart = document.getElementById('pie_chart');
-        pie_chart.width = chartWidth;
-        pie_chart.height = chartHeight;
-        var ctx_pie = pie_chart.getContext("2d");
+        var bar_chart = document.getElementById('bar_chart');
+        // bar_chart.width = chartWidth;
+        // bar_chart.height = chartHeight;
+        var ctx_bar = bar_chart.getContext("2d");
         // destroy last created chart
-        if(myPieChart != undefined){
-            myPieChart.destroy();
+        if(myBarChart != undefined){
+            myBarChart.destroy();
         }
-        myPieChart = new Chart(ctx_pie,{
-            type: 'pie',
+        myBarChart = new Chart(ctx_bar,{
+            type: 'bar',
             data: data,
+            options:{
+                legend: {
+                    display: false
+                },
+                scales:{
+                    xAxes:[{
+                        ticks:{
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
         });
     }
 
@@ -127,8 +139,11 @@
 
                 initChart({
                     datasets: [{
+                        label: 'Stok Darah',
                         data: stocks,
-                        backgroundColor: ['#f00','#0f0','#00f','#ff0','#0ff','#f0f','#000','#fff']
+                        backgroundColor: ['rgba(244,67,54 ,0.5)','rgba(156,39,176 ,0.5)','rgba(63,81,181 ,0.5)','rgba(3,169,244 ,0.5)','rgba(0,150,136 ,0.5)','rgba(139,195,74 ,0.5)','rgba(255,152,0 ,0.5)', 'rgba(121,85,72 ,0.5)'],
+                        borderColor: ['rgba(244,67,54 ,0.6)','rgba(156,39,176 ,0.6)','rgba(63,81,181 ,1)','rgba(3,169,244 ,1)','rgba(0,150,136 ,1)','rgba(139,195,74 ,1)','rgba(255,152,0 ,1)', 'rgba(121,85,72 ,1)'],
+                        borderWidth: 1
                     }],
 
                     // These labels appear in the legend and in the tooltips when hovering different arcs
@@ -148,18 +163,6 @@
 </script>
 
 <script src="{{ asset('js/chart.bundle.min.js') }}"></script>
-<script src='js/googlemaps.js'></script>
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDxQBvSn1BtzShvuE3hpJZgBPQ-1MVKmw&callback=initMap"></script>
-
-<script>
-    $(document).ready(function() {
-        $('.fb-share').click(function(e) {
-            e.preventDefault();
-            window.open($(this).attr('href'), 'fbShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
-            return false;
-        });
-    });
-</script>
 
 @endsection
