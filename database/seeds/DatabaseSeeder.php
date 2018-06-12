@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
     	$this->call(BloodStockSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(PostSeeder::class);
+        $this->call(RoleAndPermissionSeeder::class);
     }
 }
