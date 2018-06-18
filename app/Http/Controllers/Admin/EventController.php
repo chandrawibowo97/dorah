@@ -20,7 +20,7 @@ class EventController extends Controller
             'events' => $events
         );
 
-        return view('event.list')->with($data);
+        return view('admin.event.show')->with($data);
     }
 
     public function add(Request $request)
@@ -36,8 +36,8 @@ class EventController extends Controller
         $event->to = $requestParameter['to'];
         $event->created_at = $currTime;
         $event->updated_at = $currTime;
-        // missing place id
-        // $event->place_id = ?;
+        $event->lat = $requestParameter['lat'];
+        $event->lng = $requestParameter['lng'];
         $event->save();
 
         return view('admin_event');
@@ -68,6 +68,8 @@ class EventController extends Controller
             $event->address = $requestParameter['address'];
             $event->from = $requestParameter['from'];
             $event->to = $requestParameter['to'];
+            $event->lat = $requestParameter['lat'];
+            $event->lng = $requestParameter['lng'];
             $event->updated_at = new \DateTime;
 
             return view('admin_event');

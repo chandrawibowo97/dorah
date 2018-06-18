@@ -25,6 +25,17 @@ class EventsController extends Controller
         return view('event.index')->with($data);
     }
 
+    public function map()
+    {
+        $route = Route::currentRouteName();
+        $events = Event::all();
+        $data = array(
+            'title' => 'Event Map - Dorah',
+            'route' => $route,
+            'events' => $events
+        );
+        return view('event.map')->with($data);
+    }
     /**
      * Show the form for creating a new resource.
      *

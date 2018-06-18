@@ -13,6 +13,7 @@
 
 
 Route::get('/', 'PagesController@index')->name('index');
+Route::get('/event/map', 'EventsController@map')->name('event_map');
 Route::resource('event', 'EventsController');
 Route::resource('blog', 'PostsController');
 Route::get('/map', 'PagesController@map')->name('map');

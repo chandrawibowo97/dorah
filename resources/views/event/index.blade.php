@@ -6,7 +6,7 @@
     <div class="text-center mb-5">
         <h2 class="display-4">Event</h2>
         <hr>
-        <p class="lead">Event merupakan fitur Dorah untuk menyebarkan event mengenai donor darah</p>
+    <p class="lead">Event merupakan fitur Dorah untuk menyebarkan event mengenai donor darah <a class="btn btn-sm btn-secondary" href="{{route('event_map')}}">Cek Peta Event</a></p>
     </div>
     <div class="card-columns">
 
