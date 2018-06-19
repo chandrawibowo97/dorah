@@ -29,7 +29,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::group(['prefix' => 'event'], function () {
         Route::get('/', 'Admin\EventController@show')->name('admin_event');
-        Route::post('/add', 'Admin\EventController@add');
+        Route::get('/add', 'Admin\EventController@add');
+        Route::post('/add', 'Admin\EventController@add')->name('admin_event_add');
         Route::delete('/delete/{id}', 'Admin\EventController@delete');
         Route::get('/edit/{id}', 'Admin\EventController@edit')->name('admin_event_edit');
         Route::put('/edit/{id}', 'Admin\EventController@edit');

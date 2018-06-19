@@ -29,4 +29,9 @@ class ProfileController extends Controller
         );
         return view('pages.profile')->with($data);
     }
+
+    public function editprofile(Request $request, $id){
+        
+
+    }
 }
