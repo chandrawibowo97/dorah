@@ -38,7 +38,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::group(['prefix' => 'post'], function () {
         Route::get('/', 'Admin\PostController@show')->name('admin_post');
-        Route::post('/add', 'Admin\PostController@add');
+        Route::get('/add', 'Admin\PostController@add');
+        Route::post('/add', 'Admin\PostController@add')->name('admin_post_add');
         Route::delete('/delete/{id}', 'Admin\PostController@delete');
         Route::get('/edit/{id}', 'Admin\PostController@edit')->name('admin_post_edit');
         Route::put('/edit/{id}', 'Admin\PostController@edit');
