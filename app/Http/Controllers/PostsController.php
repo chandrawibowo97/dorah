@@ -16,7 +16,7 @@ class PostsController extends Controller
     public function index()
     {
         $route = Route::currentRouteName();
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
         $data = array(
             'title' => 'Blog - Dorah',
             'route' => $route,

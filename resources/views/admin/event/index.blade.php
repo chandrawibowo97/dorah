@@ -16,7 +16,8 @@
             </form>
 		</div>
 	</div>
-	@endforeach
+    @endforeach
+    {{$events->links()}}
 </div>
 
 @endsection

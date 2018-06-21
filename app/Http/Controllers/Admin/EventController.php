@@ -13,7 +13,7 @@ class EventController extends Controller
     public function show(Request $request)
     {
         $route = Route::currentRouteName();
-        $events = Event::all();
+        $events = Event::orderBy('created_at', 'desc')->paginate(12);
 
         $data = array(
             'title' => 'Admin - Event',

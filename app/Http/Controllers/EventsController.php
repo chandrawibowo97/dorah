@@ -16,7 +16,7 @@ class EventsController extends Controller
     public function index()
     {
         $route = Route::currentRouteName();
-        $events = Event::all();
+        $events = Event::orderBy('created_at', 'desc')->paginate(12);
         $data = array(
             'title' => 'Event - Dorah',
             'route' => $route,

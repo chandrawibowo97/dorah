@@ -12,7 +12,7 @@ class PostController extends Controller
     public function show(Request $request)
     {
         $route = Route::currentRouteName();
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
 
         $data = array(
             'title' => 'Admin - Blog',
@@ -20,12 +20,12 @@ class PostController extends Controller
             'posts' => $posts
         );
 
-        return view('blog.list')->with($data);
+        return view('admin.blog.index')->with($data);
     }
 
     public function add(Request $request)
     {
-        $route = Route::currentRouteName();
+        if ($request->isMethod('post')) {
         $currTime = new \DateTime;
 
         $requestParameter = $request->request->all();
@@ -36,15 +36,22 @@ class PostController extends Controller
         $post->updated_at = $currTime;
 
         $post->save();
+        return redirect()->route('admin_post');
+        }
 
-        return view('admin_post');
+        $route = Route::currentRouteName();
+        $data = array(
+            'title' => 'Admin - Add Blog Post',
+            'route' => $route
+        );
+        return view('admin.blog.add')->with($data);
     }
 
     public function delete(Request $request, $id)
     {
         $post = Post::find($id);
         $post->delete();
-        return redirect('admin_post');
+        return redirect()->route('admin_post');
     }
 
     public function edit(Request $request, $id)
@@ -53,7 +60,7 @@ class PostController extends Controller
         $post = Post::find($id);
 
         $data = array(
-            'title' => 'Blog - Dorah',
+            'title' => 'Admin - Edit Post',
             'route' => $route,
             'post' => $post
         );
@@ -64,10 +71,10 @@ class PostController extends Controller
             $post->title = $requestParameter['title'];
             $post->body = $requestParameter['body'];
             $post->updated_at = new \DateTime;
-
-            return view('admin_post');
+            $post->save();
+            return redirect()->route('admin_post');
         }
 
-        return view('blog.edit')->with($data);
+        return view('admin.blog.edit')->with($data);
     }
 }
