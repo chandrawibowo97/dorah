@@ -22,6 +22,7 @@ Route::get('/help', 'PagesController@help')->name('help');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'User\HomeController@index')->name('home');
     Route::get('/profile', 'User\ProfileController@index')->name('profile');
+    Route::post('/profile', 'User\ProfileController@index');
     Route::get('/logout', 'Auth\LogoutController@logout')->name('logout');
 });
 
