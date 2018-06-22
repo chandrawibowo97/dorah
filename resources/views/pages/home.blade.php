@@ -2,41 +2,56 @@
 
 @section('content')
 
-<div class="container py-5">
+<div class="container py-4">
+<h5 class="text-right">Halo, {{$name}}</h5>
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="maps" style="height: 450px"></div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <select class="custom-select">
+                            <option selected>Sumatera Utara</option>
+                            {{-- <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option> --}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="custom-select">
+                            <option selected>Medan</option>
+                            {{-- <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option> --}}
+                        </select>
+                    </div>
+                    <canvas id="bar_chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3>Event Terbaru</h3>
     <div class="row mb-5">
-        <div class="row col col-md-8">
-            <h3 class="text-muted col-md-12">Event Terbaru</h3>
-            <div class="col col-md-6">
-
-            </div>
-        </div>
-
-        <div class="col col-md-4">
-            <h3 class="text-muted">Selamat Datang, {{ $name }}</h3>
+        @foreach($events as $event)
+        <div class="col-sm-6 col-lg-4">
             <div class="card">
-                <div class="card-header">Notifikasi</div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Tidak ada notifikasi</li>
-                </ul>
+                <img class="card-img-top" src="/storage/event-images/{{$event->event_picture}}" alt="Gambar Event">
+                <div class="card-body">
+                    <h4 class="card-title">{{$event->title}}</h4>
+                    <h5 class="text-muted">{{$event->from->format('D, d M Y')}}</h5>
+                    <p>Waktu: {{$event->from->format('g:ia')}} - {{$event->to->format('g:ia')}}</p>
+                    <p>Lokasi: {{$event->address}}</p>
+                </div>
+                <div class="card-footer">
+                    <a class="card-link" href="event/{{$event->id}}">Cek Lokasi</a>
+                    <a class="card-link" href="#">Sebarkan ke Facebook</a>
+                </div>
             </div>
         </div>
-    </div>
-
-    <hr>
-
-    <div class="mt-5 mb-2 row">
-        <div class="col">
-            <h3 class="text-muted">Cek Stok Darah</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8">
-            <div id="maps" style="height: 420px"></div>
-        </div>
-        <div class="col-md-4">
-            <canvas id="bar_chart"></canvas>
-        </div>
-    </div>
+        @endforeach
+    </div>    
 </div>
 
 @endsection
@@ -45,12 +60,12 @@
 @section('script')
 <script type="text/javascript">
     var myBarChart;
-    // var chartWidth = 30; chartHeight= 30;
+    var chartWidth = 30; chartHeight= 15;
     function initChart(data){
 
         var bar_chart = document.getElementById('bar_chart');
-        // bar_chart.width = chartWidth;
-        // bar_chart.height = chartHeight;
+        bar_chart.width = chartWidth;
+        bar_chart.height = chartHeight;
         var ctx_bar = bar_chart.getContext("2d");
         // destroy last created chart
         if(myBarChart != undefined){
@@ -64,7 +79,7 @@
                     display: false
                 },
                 scales:{
-                    xAxes:[{
+                    yAxes:[{
                         ticks:{
                             beginAtZero:true
                         }

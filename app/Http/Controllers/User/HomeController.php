@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Model\Event;
 
 class HomeController extends Controller
 {
@@ -39,6 +40,7 @@ class HomeController extends Controller
             ->join('blood_types', 'blood_stocks.blood_type_id', '=', 'blood_types.id')
             ->get();
 
+        $events = Event::orderBy('created_at', 'desc')->take(3)->get();
         if (is_null($user)) {
             $name = '';
         } else {
@@ -51,7 +53,8 @@ class HomeController extends Controller
             'route' => $route,
             'name' => $name,
             'branches' => $branches,
-            'stocks' => $stocks
+            'stocks' => $stocks,
+            'events' => $events
         );
 
         return view('pages.home')->with($data);

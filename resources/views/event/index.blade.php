@@ -8,9 +8,9 @@
         <hr>
     <p class="lead">Event merupakan fitur Dorah untuk menyebarkan event mengenai donor darah <a class="btn btn-sm btn-secondary" href="{{route('event_map')}}">Cek Peta Event</a></p>
     </div>
-    <div class="card-columns">
-
+    <div class="row">
         @foreach($events as $event)
+        <div class="col-sm-6 col-lg-4 mb-3">
         <div class="card">
             <img class="card-img-top" src="/storage/event-images/{{$event->event_picture}}" alt="Gambar Event">
             <div class="card-body">
@@ -23,6 +23,7 @@
                 <a class="card-link" href="event/{{$event->id}}">Cek Lokasi</a>
                 <a class="card-link" href="#">Sebarkan ke Facebook</a>
             </div>
+        </div>
         </div>
         @endforeach
         {{$events->links()}}
