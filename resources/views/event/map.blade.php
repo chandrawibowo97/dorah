@@ -35,7 +35,7 @@
 
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
-            infowindow.setContent('<h4><a target="_blank" href="/event/' + i + '">' + events[i].title + '</a></h4>' + events[i].address + '<br><small><a target="_blank" href="/event/' + i + '">Cek lokasi event >></a></small>');
+            infowindow.setContent('<h4><a target="_blank" href="/event/' + events[i].id + '">' + events[i].title + '</a></h4><img class="my-2" style="height: 120px" src="/storage/event-images/' + events[i].event_picture + '"><br>' + events[i].address + '<br><small><a target="_blank" href="/event/' + events[i].id + '">Cek lokasi event >></a></small>');
             infowindow.open(map, marker);
             }
         })(marker, i));
