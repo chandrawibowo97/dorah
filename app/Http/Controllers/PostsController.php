@@ -55,12 +55,14 @@ class PostsController extends Controller
     public function show($id)
     {
         $route = Route::currentRouteName();
+        $posts = Post::orderBy('created_at', 'desc')->take(10)->get();
         $post = Post::Find($id);
         $titlebar = $post->title . " - Dorah";
         $data = array(
             'title' => $titlebar,
             'route' => $route,
-            'post' => $post
+            'post' => $post,
+            'posts' =>$posts
         );
         return view('blog.show')->with($data);
     }

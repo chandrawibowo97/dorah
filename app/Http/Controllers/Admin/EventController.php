@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Model\Event;
 use Carbon\Carbon;
@@ -28,6 +29,33 @@ class EventController extends Controller
     {
         
         if ($request->isMethod('post')) {
+            $this->validate($request, [
+                'title' => 'required',
+                'address' => 'required',
+                'from' => 'required',
+                'to' => 'required',
+                'lat' => 'required',
+                'lng' => 'required',
+                'picture' => 'image|max:1999'
+            ]);
+
+            // handle image upload
+            if($request->hasFile('picture')) {
+                //get filename with extension
+                $filenameWithExt = $request->file('picture')->getClientOriginalName();
+                //get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                //get just ext
+                $extension = $request->file('picture')->getClientOriginalExtension();
+                //filename to store
+                $filenameToStore = $filename.'_'.time().'.'.$extension;
+
+                $path = $request->file('picture')->storeAs('public/event-images', $filenameToStore);
+            }
+            else {
+                $filenameToStore = "no-image.png";
+            }
+
             $currTime = new \DateTime;
 
             $requestParameter = $request->request->all();
@@ -40,7 +68,7 @@ class EventController extends Controller
             $event->updated_at = $currTime;
             $event->lat = $requestParameter['lat'];
             $event->lng = $requestParameter['lng'];
-            $event->event_picture = "no-image.png";
+            $event->event_picture = $filenameToStore;
             $event->save();
             return redirect()->route('admin_event');
         }
@@ -55,6 +83,11 @@ class EventController extends Controller
     public function delete(Request $request, $id)
     {
         $event = Event::find($id);
+
+        if($event->event_picture != "no-image.png") {
+            Storage::delete('public/event-images/'.$event->event_picture);
+        }
+        
         $event->delete();
         return redirect()->route('admin_event');
     }
@@ -71,6 +104,35 @@ class EventController extends Controller
         );
 
         if ($request->isMethod('put')) {
+            $this->validate($request, [
+                'title' => 'required',
+                'address' => 'required',
+                'from' => 'required',
+                'to' => 'required',
+                'lat' => 'required',
+                'lng' => 'required',
+                'picture' => 'image|max:1999'
+            ]);
+
+            // handle image upload
+            if($request->hasFile('picture')) {
+                //get filename with extension
+                $filenameWithExt = $request->file('picture')->getClientOriginalName();
+                //get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                //get just ext
+                $extension = $request->file('picture')->getClientOriginalExtension();
+                //filename to store
+                $filenameToStore = $filename.'_'.time().'.'.$extension;
+
+                //delete old picture
+                if($event->event_picture != "no-image.png") {
+                    Storage::delete('public/event-images/'.$event->event_picture);
+                }
+
+                $path = $request->file('picture')->storeAs('public/event-images', $filenameToStore);
+            }
+
             $requestParameter = $request->request->all();
 
             $event->title = $requestParameter['title'];
@@ -79,7 +141,11 @@ class EventController extends Controller
             $event->to = Carbon::createFromFormat('Y-m-d H:i:s', $requestParameter['to']);
             $event->lat = $requestParameter['lat'];
             $event->lng = $requestParameter['lng'];
-            
+
+            if($request->hasFile('picture')) {
+                $event->event_picture = $filenameToStore;
+            }
+
             $event->updated_at = new \DateTime;
             $event->save();
             return redirect()->route('admin_event');
