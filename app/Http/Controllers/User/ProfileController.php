@@ -28,6 +28,19 @@ class ProfileController extends Controller
         $provinces = Province::all();
         $blood_types = Blood_Type::all();
 
+        $data = array(
+            'title' => 'Edit Profile - Dorah',
+            'route' => $route,
+            'user' => $user,
+            'provinces' => $provinces,
+            'blood_types' => $blood_types
+        );
+        return view('pages.profile')->with($data);
+    }
+
+    public function changeProfile(Request $request){
+        $user = Auth::user();
+
         if ($request->isMethod('post')) {
             $requestParameter = $request->request->all();
             $user->name = $requestParameter['name'];
@@ -37,16 +50,7 @@ class ProfileController extends Controller
             $user->province_id = $requestParameter['province'];
             $user->kartu_donor_id = $requestParameter['kartu_donor'];
             $user->save();
-            return redirect()->route('profile');
         }
-
-        $data = array(
-            'title' => 'Edit Profile - Dorah',
-            'route' => $route,
-            'user' => $user,
-            'provinces' => $provinces,
-            'blood_types' => $blood_types
-        );
-        return view('pages.profile')->with($data);
+        return redirect()->route('profile')->with('status', 'Profil berhasil diubah');
     }
 }

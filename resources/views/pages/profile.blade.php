@@ -3,12 +3,17 @@
 @section('content')
 
 <div class="container py-5">
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="row">
         <div class="col col-md-6">
             <h3 class="text-muted">Edit Profil</h3>
             <div class="card mb-3">
                 <div class="card-body">
-                    <form method="post" action="/profile">
+                    <form method="post" action="{{route('change_profile')}}">
                         @csrf
                         <div class="form-group">
                             <label for="inputName">Nama Lengkap</label>
