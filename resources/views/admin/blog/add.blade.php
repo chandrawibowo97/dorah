@@ -6,6 +6,13 @@
     <p>
         <a class="btn btn-secondary" href="{{route('admin_post')}}">Kembali Ke Post</a>
     </p>
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">
+            {{$error}}
+        </div>
+        @endforeach
+    @endif
     <div class="card">
         <div class="card-body">
             <form method="post" action="{{route('admin_post_add')}}" enctype="multipart/form-data">

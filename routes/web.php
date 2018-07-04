@@ -27,7 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
-
+    Route::get('/', 'AdminController@admin')->name('admin');
+    
     Route::group(['prefix' => 'event'], function () {
         Route::get('/', 'Admin\EventController@show')->name('admin_event');
         Route::get('/add', 'Admin\EventController@add');

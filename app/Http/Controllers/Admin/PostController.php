@@ -60,7 +60,7 @@ class PostController extends Controller
             $post->updated_at = $currTime;
 
             $post->save();
-            return redirect()->route('admin_post');
+            return redirect()->route('admin_post')->with('status', 'Blog Post berhasil ditambahkan');
         }
 
         $route = Route::currentRouteName();
@@ -78,7 +78,7 @@ class PostController extends Controller
             Storage::delete('public/post-images/'.$post->cover_image);
         }
         $post->delete();
-        return redirect()->route('admin_post');
+        return redirect()->route('admin_post')->with('status', 'Blog Post berhasil dihapus');
     }
 
     public function edit(Request $request, $id)
@@ -127,7 +127,7 @@ class PostController extends Controller
             }
             $post->updated_at = new \DateTime;
             $post->save();
-            return redirect()->route('admin_post');
+            return redirect()->route('admin_post')->with('status', 'Blog Post berhasil diubah');
         }
 
         return view('admin.blog.edit')->with($data);

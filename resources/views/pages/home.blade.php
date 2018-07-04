@@ -37,7 +37,7 @@
         @foreach($events as $event)
         <div class="col-sm-6 col-lg-4">
             <div class="card">
-                <img class="card-img-top" src="/storage/event-images/{{$event->event_picture}}" alt="Gambar Event">
+                <img class="card-img-top" style="height:200px" src="/storage/event-images/{{$event->event_picture}}" alt="Gambar Event">
                 <div class="card-body">
                     <h4 class="card-title">{{$event->title}}</h4>
                     <h5 class="text-muted">{{$event->from->format('D, d M Y')}}</h5>

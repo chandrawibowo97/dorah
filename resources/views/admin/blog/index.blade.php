@@ -3,6 +3,11 @@
 @section('content')
 
 <div class="container py-5">
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
     <p>
         <a class="btn btn-secondary" href="/admin">Kembali ke Dashboard</a>
         <a class="btn btn-primary" href="/admin/post/add">Tambah Post</a>
@@ -10,7 +15,7 @@
 	@foreach($posts as $post)
 	<div class="card mb-2">
 		<div class="card-body p-3">
-			<h2><a href="/admin/post/edit/{{$post->id}}">{{$post->title}}</a></h2>
+			<h2><a target="_blank" href="/blog/{{$post->id}}">{{$post->title}}</a></h2>
             <a class="btn btn-sm btn-primary" href="/admin/post/edit/{{$post->id}}">Edit</a>
             <form class="float-right" action="/admin/post/delete/{{$post->id}}" method="POST">
                 @csrf

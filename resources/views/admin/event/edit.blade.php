@@ -4,6 +4,13 @@
 
 <div class="container py-5">
     <h4>Tambahkan Event</h4>
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+        <div class="alert alert-danger">
+            {{$error}}
+        </div>
+        @endforeach
+    @endif
     <div class="card">
         <div class="card-body">
         <form method="post" action="/admin/event/edit/{{$event->id}}" enctype="multipart/form-data">

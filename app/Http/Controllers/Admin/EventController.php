@@ -70,7 +70,7 @@ class EventController extends Controller
             $event->lng = $requestParameter['lng'];
             $event->event_picture = $filenameToStore;
             $event->save();
-            return redirect()->route('admin_event');
+            return redirect()->route('admin_event')->with('status', 'Event berhasil ditambahkan');
         }
         $route = Route::currentRouteName();
         $data = array(
@@ -89,7 +89,7 @@ class EventController extends Controller
         }
         
         $event->delete();
-        return redirect()->route('admin_event');
+        return redirect()->route('admin_event')->with('status', 'Event berhasil dihapus');
     }
 
     public function edit(Request $request, $id)
@@ -148,7 +148,7 @@ class EventController extends Controller
 
             $event->updated_at = new \DateTime;
             $event->save();
-            return redirect()->route('admin_event');
+            return redirect()->route('admin_event')->with('status', 'Event berhasil diubah');
         }
 
         return view('admin.event.edit')->with($data);
